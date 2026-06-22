@@ -7,6 +7,10 @@ const robotoMono = Roboto_Mono({ subsets: ['latin'], weight: ['400', '500', '700
 export const metadata: Metadata = {
   title: 'Mehr Ali Altaf',
   description: 'Personal website of Mehr Ali Altaf',
+  icons: {
+    icon: '/favicon-512.png',
+    apple: '/apple-icon.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
