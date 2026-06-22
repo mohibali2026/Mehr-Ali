@@ -99,6 +99,15 @@ html, body {
   to { opacity: 0; }
 }
 
+/* Social icons hover */
+.social-link {
+  color: #fff;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+  display: block;
+}
+.social-link:hover { opacity: 1; }
+
 /* Home */
 .hero {
   width: 100%;
@@ -112,6 +121,7 @@ html, body {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(
     to bottom,
     rgba(0,0,0,0.18) 0%,

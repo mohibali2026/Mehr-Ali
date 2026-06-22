@@ -11,6 +11,7 @@ export default function Home() {
         style={{ objectFit: 'cover', objectPosition: 'center center' }}
       />
 
+      {/* Social icons — center left */}
       <div style={{
         position: 'absolute',
         left: '40px',
@@ -21,14 +22,11 @@ export default function Home() {
         gap: '20px',
         zIndex: 10,
       }}>
-        {/* LinkedIn */}
         <a
           href="https://www.linkedin.com/in/mehr-ali-637595226/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: '#fff', opacity: 0.75, transition: 'opacity 0.2s' }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-          onMouseLeave={e => (e.currentTarget.style.opacity = '0.75')}
+          className="social-link"
           aria-label="LinkedIn"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -36,14 +34,11 @@ export default function Home() {
           </svg>
         </a>
 
-        {/* Instagram */}
         <a
           href="http://instagram.com/iammehrali"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: '#fff', opacity: 0.75, transition: 'opacity 0.2s' }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-          onMouseLeave={e => (e.currentTarget.style.opacity = '0.75')}
+          className="social-link"
           aria-label="Instagram"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -52,6 +47,7 @@ export default function Home() {
         </a>
       </div>
 
+      {/* Bio — center right */}
       <div style={{
         position: 'absolute',
         right: '56px',
