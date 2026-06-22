@@ -25,11 +25,9 @@ export default function Home() {
 
       {/* Left panel */}
       <div className="home-left">
-        <p className="home-eyebrow">// Mehr Ali Altaf</p>
+        <p className="home-eyebrow">// Welcome</p>
 
-        <h1 className="home-title">
-          M E H R<br />A L I .
-        </h1>
+        <h1 className="home-title">M E H R &nbsp;A L I .</h1>
 
         <p className="home-sub">FITNESS &nbsp;|&nbsp; PSYCHOLOGY</p>
 

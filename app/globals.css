@@ -160,12 +160,13 @@ html, body {
 }
 
 .home-title {
-  font-size: clamp(42px, 5.5vw, 80px);
+  font-size: clamp(28px, 3.2vw, 52px);
   font-weight: 700;
   line-height: 1.05;
   color: #fff;
   letter-spacing: 0.08em;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 
 .home-sub {
@@ -179,7 +180,7 @@ html, body {
   font-size: 15px;
   line-height: 1.8;
   color: rgba(255,255,255,0.7);
-  max-width: 360px;
+  max-width: 480px;
   margin-bottom: 40px;
 }
 
@@ -202,6 +203,19 @@ html, body {
   background: linear-gradient(to right, #0d0d0d 0%, transparent 20%);
   z-index: 1;
   pointer-events: none;
+}
+
+.home-right img {
+  opacity: 0;
+  filter: blur(12px);
+  transform: scale(1.04);
+  animation: imgReveal 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.3s;
+}
+
+@keyframes imgReveal {
+  0%   { opacity: 0; filter: blur(12px); transform: scale(1.04); }
+  40%  { opacity: 1; }
+  100% { opacity: 1; filter: blur(0px); transform: scale(1); }
 }
 
 /* ── Mobile ── */
@@ -235,6 +249,6 @@ html, body {
     text-align: center;
   }
 
-  .home-title { font-size: clamp(36px, 10vw, 56px); }
+  .home-title { font-size: clamp(22px, 6vw, 34px); }
   .home-bio { max-width: 100%; }
 }
