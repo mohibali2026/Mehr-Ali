@@ -108,25 +108,133 @@ html, body {
 }
 .social-link:hover { opacity: 1; }
 
-/* Home */
-.hero {
+/* ── Home ── */
+.home-wrap {
+  display: flex;
   width: 100%;
   height: 100vh;
-  position: relative;
+  overflow: hidden;
+  background: #0d0d0d;
   opacity: 0;
   animation: fadeIn 0.8s ease forwards 0.1s;
 }
 
-.hero::after {
+/* Nav dots */
+.nav-dots {
+  position: absolute;
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 20;
+}
+.dot-item {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+}
+.dot-item.active { background: #fff; }
+
+/* Left panel */
+.home-left {
+  width: 45%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 64px 0 100px;
+  position: relative;
+  z-index: 10;
+}
+
+.home-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #e84025;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.home-title {
+  font-size: clamp(42px, 5.5vw, 80px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: #fff;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.home-sub {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 32px;
+}
+
+.home-bio {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.7);
+  max-width: 360px;
+  margin-bottom: 40px;
+}
+
+.home-social {
+  display: flex;
+  gap: 20px;
+}
+
+/* Right panel — photo */
+.home-right {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-right::before {
   content: '';
   position: absolute;
   inset: 0;
+  background: linear-gradient(to right, #0d0d0d 0%, transparent 20%);
   z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.18) 0%,
-    rgba(0,0,0,0.0) 40%,
-    rgba(0,0,0,0.55) 100%
-  );
   pointer-events: none;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  html, body { overflow: auto; }
+
+  .home-wrap {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    background: #404040;
+    overflow: visible;
+  }
+
+  .nav-dots { display: none; }
+
+  .home-right {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    flex-shrink: 0;
+    order: -1;
+  }
+
+  .home-right::before { display: none; }
+
+  .home-left {
+    width: 100%;
+    padding: 32px 24px 48px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-title { font-size: clamp(36px, 10vw, 56px); }
+  .home-bio { max-width: 100%; }
 }
