@@ -114,7 +114,7 @@ html, body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #0d0d0d;
+  background: #404040;
   opacity: 0;
   animation: fadeIn 0.8s ease forwards 0.1s;
 }
@@ -200,7 +200,7 @@ html, body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, #0d0d0d 0%, transparent 20%);
+  background: linear-gradient(to right, #404040 0%, transparent 20%);
   z-index: 1;
   pointer-events: none;
 }
