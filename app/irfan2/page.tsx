@@ -3,7 +3,7 @@ import TicTacToe from './TicTacToe'
 
 export const metadata: Metadata = {
   title: "Irfan's Tic-Tac-Toe",
-  description: 'Play Tic-Tac-Toe with whoever else is on this page.',
+  description: 'Two players, one screen. Enter your names, play, and every game becomes part of the story.',
 }
 
 export default function Irfan2() {
