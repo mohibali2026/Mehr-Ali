@@ -1,0 +1,205 @@
+.app {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+  background: var(--bg);
+  color: #fff;
+}
+
+.head {
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.pulse {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffcc00;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.live {
+  background: #1faa59;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.score {
+  display: flex;
+  gap: 10px;
+}
+
+.score div {
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #161616;
+  text-align: center;
+}
+
+.score span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.score strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: min(100%, 52vh, 400px);
+  aspect-ratio: 1;
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 16px;
+  background: #161616;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cell:not(:disabled):hover {
+  background: #202020;
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.win {
+  background: #2a1512;
+}
+
+.mark {
+  width: 72%;
+  height: 72%;
+  fill: none;
+  stroke-width: 11;
+  stroke-linecap: round;
+}
+
+.mark path,
+.mark circle {
+  stroke-dasharray: 190;
+  stroke-dashoffset: 190;
+  animation: draw 0.25s ease-out forwards;
+}
+
+.x {
+  stroke: var(--accent);
+}
+
+.x .second {
+  animation-delay: 0.12s;
+}
+
+.o {
+  stroke: #fff;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-height: 96px;
+}
+
+.line {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.small {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.btn {
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 320px;
+  padding: 28px 24px;
+  border-radius: 20px;
+  background: #161616;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+}
