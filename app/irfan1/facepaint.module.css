@@ -1,0 +1,229 @@
+.app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  background: var(--bg);
+  color: #fff;
+}
+
+.camera,
+.studio {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Left: live camera with the drawing on the face */
+.camera {
+  overflow: hidden;
+  background: #000;
+}
+
+.video,
+.mask {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.mask {
+  pointer-events: none;
+}
+
+.tattoo {
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.glow {
+  mix-blend-mode: screen;
+  filter: saturate(1.3) drop-shadow(0 0 6px rgba(255, 255, 255, 0.75));
+}
+
+.head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: max(20px, env(safe-area-inset-top)) 20px 28px max(20px, env(safe-area-inset-left));
+  background: linear-gradient(rgba(0, 0, 0, 0.55), transparent);
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.note {
+  margin-top: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 28px 20px max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+}
+
+/* Right: the drawing canvas */
+.studio {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right))
+    max(20px, env(safe-area-inset-bottom)) 20px;
+}
+
+.stage {
+  flex: 1;
+  min-height: 0;
+  container-type: size;
+  display: grid;
+  place-items: center;
+}
+
+.square {
+  position: relative;
+  width: min(100cqw, 100cqh);
+  aspect-ratio: 1;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #161616;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ink {
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.waiting {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn {
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.round {
+  width: 40px;
+  padding: 0;
+}
+
+.on {
+  background: #fff;
+  border-color: #fff;
+  color: var(--bg);
+}
+
+.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.swatchOn {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Tall screens (iPad held upright, phones): camera on top, canvas below */
+@media (max-aspect-ratio: 1/1) {
+  .app {
+    flex-direction: column;
+  }
+}
