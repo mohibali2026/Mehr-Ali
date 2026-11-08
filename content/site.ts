@@ -62,10 +62,9 @@ export const about = {
 // ── Fitness ──────────────────────────────────────────────────
 export const fitness = {
   intro: [
-    'I’ve been training for [how long].',
-    '[How you train: for example, gym four days a week, mostly strength work.]',
-    '[What you focus on: for example, eating enough protein, sleeping well, staying consistent.]',
-    'I train for my health first. The way I look comes second.',
+    'I’ve been training for two years.',
+    'I train like an athlete, not a bodybuilder. I train four to five times a week and do cardio every day. I also walk 6,000 to 10,000 steps a day on average.',
+    'I focus on sleep, consistency and protein. Diet and rest matter more than anything else.',
   ],
   invite: 'Got a question about training or food? Message me. I’m happy to help.',
 }
