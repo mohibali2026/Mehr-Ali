@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import { Roboto_Mono } from 'next/font/google'
-import './globals.css'
+import './irfan.css'
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
 export const metadata: Metadata = {
-  title: 'Mehr Ali Altaf',
-  description: 'Personal website of Mehr Ali Altaf',
+  title: 'Irfan',
+  description: 'Games and toys by Irfan',
   icons: {
     icon: '/favicon-512.png',
     apple: '/apple-icon.png',
