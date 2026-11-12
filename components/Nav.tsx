@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { site } from '@/content/site'
 
 const links = [
@@ -13,16 +13,33 @@ const links = [
   { href: '/contact', label: 'Contact' },
 ]
 
+const isActive = (href: string, pathname: string) =>
+  href === '/' ? pathname === '/' : pathname.startsWith(href)
+
 export default function Nav() {
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
+  // Remember which page the menu was opened on, so it closes by itself after any navigation.
+  const [openOn, setOpenOn] = useState<string | null>(null)
+  const open = openOn === pathname
+  const close = () => setOpenOn(null)
 
-  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpenOn(null)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
+  const current = links.findIndex((l) => isActive(l.href, pathname))
+
+  // Slide content left when moving right along the menu, and right when moving back.
+  const direction = (target: number) =>
+    current === -1 || target === current ? undefined : [target > current ? 'nav-forward' : 'nav-back']
 
   return (
-    <header className="site-header">
+    <header className="site-header" style={{ viewTransitionName: 'site-header' }}>
       <div className="container header-inner">
-        <Link href="/" className="brand" onClick={() => setOpen(false)}>
+        <Link href="/" className="brand" onClick={close} transitionTypes={direction(0)}>
           {site.name}
         </Link>
 
@@ -31,25 +48,43 @@ export default function Nav() {
           className="menu-button"
           aria-expanded={open}
           aria-controls="site-nav"
-          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpenOn(open ? null : pathname)}
         >
-          {open ? 'Close' : 'Menu'}
+          <span className="burger" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
         </button>
 
         <nav id="site-nav" className={open ? 'site-nav open' : 'site-nav'} aria-label="Main">
-          <ul>
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  aria-current={isActive(l.href) ? 'page' : undefined}
-                  onClick={() => setOpen(false)}
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="nav-panel">
+            <ul>
+              {links.map((l, i) => {
+                const active = isActive(l.href, pathname)
+                return (
+                  <li key={l.href} style={{ '--i': i } as React.CSSProperties}>
+                    <Link
+                      href={l.href}
+                      aria-current={active ? 'page' : undefined}
+                      onClick={close}
+                      transitionTypes={direction(i)}
+                    >
+                      {l.label}
+                      {active && (
+                        <span
+                          className="nav-indicator"
+                          aria-hidden="true"
+                          style={{ viewTransitionName: 'nav-indicator' }}
+                        />
+                      )}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </nav>
       </div>
     </header>
